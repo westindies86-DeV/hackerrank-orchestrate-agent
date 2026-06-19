@@ -1,0 +1,23 @@
+﻿# Secrets
+.env
+*.key
+
+# Python
+__pycache__/
+*.pyc
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Submission artifacts - keep local
+output.csv
+output.json
+code.zip
+log.txt
+
+# IDE
+.vscode/
+.idea/
