@@ -1,10 +1,15 @@
-notepad README.md          # Write your README, save, close
+﻿## ⚡ Built in 20 minutes
+12:07am rejection → 12:35am live deployment | Zero ML hallucination | 5/5 tests passing
 
-git add README.md          # Stage it
+### HackerRank Orchestrate Agent - Deterministic Claim Resolver
 
-git status                 # Check it turned green
+Rule-based Python system for insurance QA. No ML black boxes.
 
-git commit -m "docs: add README"   # Commit it
+**Test Results:**
+- 5/5 cases passing
+- Zero hallucinations 
+- Handles: frost heave, missing images, batch errors
 
-git push                   # Push to GitHub
+**Stack:** Python, Git, CSV I/O, pytest-style validation
 
+**Repo:** Built + defended in 20 minutes after $17/hr rejection at 12:07am
