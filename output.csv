@@ -1,45 +1,45 @@
 evidence_standard_met,evidence_standard_met_reason,risk_flags,issue_type,object_part,claim_status,claim_status_justification,supporting_image_ids,valid_image,severity
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
-True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,"The images show clear and relevant damage to the vehicle, with identifiable parts and damage types.",none,scratch,rear_bumper,approved,"The scratch on the rear bumper is visible and appears to be recent, meeting the criteria for claim approval.","img_1.jpg,img_2.jpg,img_3.jpg",True,low
+True,The image clearly shows the specific area of damage on the vehicle door.,none,scratch,door,needs_review,"While the image shows a visible scratch on the door, further details such as the depth, extent, and potential impact on the vehicle's value or safety are not clear. Additional images or a professional inspection may be required to fully assess the damage.",img_1.jpg,True,low
+True,"The image clearly shows a broken windshield with spiderweb cracks and a visible impact point, meeting evidentiary standards for damage assessment.",none,windshield_crack,front_windshield,needs_review,"While the damage is evident, further assessment is required to determine the extent of the crack and whether it impairs visibility or structural integrity.","img_1.jpg,img_2.jpg",True,high
+False,No visible damage present in the image; vehicle appears to be in pristine condition.,none,none,none,rejected,No evidence of damage or issues observed in the provided images.,"img_1.jpg,img_2.jpg",True,none
+False,Image is too blurry to accurately determine the extent or specifics of any damage.,fraud_risk,other,front_windshield,rejected,The image quality does not meet the required standard for assessment. Clear and detailed images are necessary to evaluate the damage accurately.,img_1.jpg,False,none
+True,Image clearly shows the damage area with sufficient lighting and no obstructions.,none,scratch,door,approved,"The damage is a surface-level scratch on the door, which is a valid claim for repair or cosmetic correction.","img_1.jpg,img_2.jpg",True,low
+True,"The image clearly shows significant damage to the headlight assembly, which is well-documented and relevant to the claim.",none,broken_lamp,front_headlight,approved,"The damage is severe and clearly visible, meeting the criteria for approval. The headlight is completely shattered, necessitating replacement.","img_1.jpg,img_2.jpg",True,high
+True,Images clearly show the damage with sufficient detail and lighting.,none,dent,door,needs_review,Damage severity and potential structural impact need further assessment by a professional.,"img_1.jpg,img_2.jpg,img_3.jpg",True,medium
+True,"The image clearly shows the damaged area of the vehicle, providing sufficient visual evidence of the damage.",none,other,hood,needs_review,"The hood of the vehicle appears to have significant damage, including a broken headlamp and structural deformation. Further inspection is required to determine the full extent of the damage and its cause.",img_1.jpg,True,high
+True,"The image clearly shows the damaged area and the context of the damage, which is essential for assessing vehicle damage claims.",none,windshield_crack,front_windshield,needs_review,"While the image clearly shows a broken windshield, further details such as the extent of the damage, the cause, and any associated injuries or vehicle functionality issues are required for a comprehensive assessment.",img_1.jpg,True,high
+False,Image does not depict a vehicle or vehicle damage; it shows a laptop screen displaying an error message.,none,other,other,rejected,Image is irrelevant to vehicle damage assessment.,"img_1.jpg,img_2.jpg",True,none
+False,"The image provided is of a laptop keyboard, not a vehicle or vehicle damage.",none,other,other,rejected,The image does not depict any vehicle damage or related components.,img_1.jpg,True,none
+False,The image provided does not depict a vehicle or vehicle damage; it shows a laptop and a fabric-covered object.,none,none,none,rejected,The image does not pertain to vehicle damage or a vehicle part.,"img_1.jpg,img_2.jpg,img_3.jpg",False,none
+False,The image provided is unrelated to vehicle damage; it shows a hand using a laptop trackpad.,none,other,other,rejected,The image does not depict any vehicle damage or related evidence.,img_1.jpg,False,none
+False,The image provided does not depict vehicle damage; it shows a computer keyboard and mouse.,none,none,none,rejected,The image is unrelated to vehicle damage claims.,"img_1.jpg,img_2.jpg",False,none
+False,"The image provided is of a smartphone screen, not a vehicle damage image.",none,other,other,rejected,The image does not depict vehicle damage.,img_1.jpg,False,none
+False,"Image does not show vehicle damage; it shows a laptop screen with Google search page and a screen with speckles, which is unrelated to vehicle damage assessment.",none,none,none,rejected,Image does not depict any vehicle damage or relevant evidence for claim assessment.,"img_1.jpg,img_2.jpg",False,none
+False,The image provided is not related to vehicle damage; it shows a laptop instead.,none,other,other,rejected,The image does not depict any vehicle damage or relevant part for a vehicle claim.,img_1.jpg,True,none
+False,Image does not depict vehicle damage; it shows a fragile package.,none,other,other,rejected,The image provided is irrelevant to vehicle damage claims.,"img_1.jpg,img_2.jpg",False,none
+False,The image provided is not related to vehicle damage; it shows a package with a tamper-evident seal.,none,other,other,rejected,The image does not depict any vehicle damage or related evidence.,img_1.jpg,True,none
+False,"Images provided are of a package, not a vehicle.",none,other,other,rejected,Images do not depict vehicle damage.,"img_1.jpg,img_2.jpg,img_3.jpg",False,none
+False,The image provided does not depict any vehicle damage; it shows a box labeled 'Fragile' and unrelated items.,fraud_risk,none,none,rejected,The image does not show any evidence of vehicle damage or a vehicle part.,"img_1.jpg,img_2.jpg",False,none
+False,The image provided is not of vehicle damage but of a damaged package.,none,other,other,rejected,"The image does not depict vehicle damage, hence the claim cannot be processed.","img_1.jpg,img_2.jpg",False,none
+False,The image provided does not depict vehicle damage but rather a damaged package.,none,other,other,rejected,"The image does not show any vehicle damage, thus it is not relevant for a vehicle damage claim.","img_1.jpg,img_2.jpg",True,none
+False,The image provided does not depict vehicle damage; it shows a package.,none,other,other,rejected,"The image does not show any evidence of vehicle damage, making it irrelevant for a damage claim assessment.",img_1.jpg,True,none
+False,Images provided do not depict vehicle damage; they show a package and its contents.,none,none,none,rejected,Images do not meet the requirement of showing vehicle damage or a damaged vehicle part.,"img_1.jpg,img_2.jpg",False,none
+False,The image is too blurry and lacks clear details to properly assess the damage. It does not meet the standard for a valid claim assessment.,fraud_risk,other,other,rejected,The image is not clear enough to determine the type or extent of damage. It does not provide sufficient evidence to support a claim.,img_1.jpg,False,none
+False,Image does not depict vehicle damage; it shows a damaged cardboard box.,none,other,other,rejected,The image provided is unrelated to vehicle damage.,"img_1.jpg,img_2.jpg,img_3.jpg",False,none
+True,Image clearly shows the front of the vehicle with visible damage to the headlight area.,none,broken_lamp,front_headlight,needs_review,"The headlight appears to have a broken or cracked lens, but additional images or details are needed to assess the full extent of the damage and its cause.","img_1.jpg,img_2.jpg,img_3.jpg",True,medium
+True,Image clearly shows the damaged area with sufficient detail and lighting.,none,dent,rear_bumper,needs_review,Damage appears significant but requires further assessment to determine the full extent of the repair costs and whether it qualifies under the claim policy terms.,"img_1.jpg,img_2.jpg",True,high
+False,"The image shows a toy vehicle, not a real vehicle, which does not meet the standard for assessing real vehicle damage claims.",fraud_risk,other,other,rejected,"The subject of the image is a toy car, not a real vehicle, making it irrelevant for actual vehicle damage claims.",img_1.jpg,True,none
+False,The images provided are not of vehicle damage but of a broken laptop screen. No valid evidence of vehicle damage is present.,none,none,none,rejected,Images do not depict vehicle damage; they show a broken laptop screen.,"img_1.jpg,img_2.jpg",False,none
+False,Image does not depict vehicle damage; it shows a broken tablet screen.,none,other,other,rejected,The image does not relate to vehicle damage and is therefore irrelevant to the claim.,"img_1.jpg,img_2.jpg",False,none
+True,Image clearly shows the damaged area with sufficient detail and lighting to assess the damage.,none,windshield_crack,front_windshield,approved,"The damage is visible and appears to be a significant crack, likely requiring repair or replacement.","img_1.jpg,img_2.jpg",True,high
+True,Image clearly shows the damaged area with sufficient detail and lighting to assess the damage.,none,dent,door,needs_review,"While the damage is visible, further inspection or additional images may be required to determine the full extent of the damage and its impact on vehicle safety and value.","img_1.jpg,img_2.jpg",True,medium
+False,The image does not depict vehicle damage; it shows a box with a label in Hindi and an Amazon package.,none,none,none,rejected,The image provided is unrelated to vehicle damage and does not meet the criteria for a valid claim assessment.,"img_1.jpg,img_2.jpg",False,none
+False,"The images show no visible damage to the vehicle. The sign 'aprobar reclamo' suggests a staged or manipulated scenario to imply a claim, which does not meet the standard for valid damage evidence.",fraud_risk,other,rear_lights,rejected,"No actual damage is visible, and the staged sign indicates potential fraudulent intent.","img_1.jpg,img_2.jpg",False,none
+False,"Images provided are of laptops, not vehicles.",none,none,none,rejected,Images do not depict vehicle damage.,"img_1.jpg,img_2.jpg",False,none
+False,No visible damage on the vehicle in the first image; insufficient evidence for claim assessment.,none,none,none,rejected,No visible damage observed in the provided image.,"img_1.jpg,img_2.jpg,img_3.jpg",True,none
+False,Image does not depict vehicle damage; it shows a food item.,none,none,none,rejected,Image does not relate to vehicle damage or claim assessment.,"img_1.jpg,img_2.jpg",False,none
+False,Image does not depict vehicle damage; it shows small electronic components and a keyboard.,none,none,none,rejected,The image provided is unrelated to vehicle damage and does not meet the criteria for assessment.,"img_1.jpg,img_2.jpg",False,none
+False,"The image does not provide a clear view of the entire damage area, and there is no reference scale or additional context for assessing the full extent of the damage.",none,scratch,rear_fender/body_panel,needs_review,"The scratch on the rear fender/body panel needs further inspection to determine its depth, length, and impact on the vehicle's value and safety. Additional images or a professional assessment is recommended.",img_1.jpg,True,medium
+False,"The images provided do not show any vehicle damage. Instead, they show a box labeled for a damage claim, which raises suspicion of fraudulent activity.",fraud_risk,other,other,rejected,"The images do not depict actual vehicle damage, and the box appears to be staged or misused for fraudulent purposes.","img_1.jpg,img_2.jpg",False,none
+False,"The image provided is not of a vehicle or vehicle damage, but rather of a laptop and a laptop lid.",none,none,none,rejected,The image does not depict vehicle damage or a vehicle part.,"img_1.jpg,img_2.jpg",False,none
