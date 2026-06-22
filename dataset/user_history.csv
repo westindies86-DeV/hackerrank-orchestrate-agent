@@ -1,4 +1,0 @@
-user_id,previous_claims_count,previous_claim_status,account_age_days
-user_a,3,rejected,450
-user_b,0,approved,120
-user_c,1,approved,800

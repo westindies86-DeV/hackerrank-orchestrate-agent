@@ -1,6 +1,0 @@
-claim_id,user_id,conversation,image_ids
-demo_001,user_a,"Customer: There is a crack in my front windshield from a rock on the highway | Support: Is it the main windshield? | Customer: Yes, right in front of me","img_001.jpg"
-demo_002,user_b,"Customer: Water is leaking into my car when it rains | Support: From the roof area? | Customer: Yes, near the center","img_002.jpg"
-demo_003,user_a,"Customer: My rear bumper got dented again in a parking lot | Support: Same spot as before? | Customer: Yes, rear passenger side","img_003.jpg"
-demo_004,user_c,"Customer: The passenger side window won't roll up | Support: Electric or manual? | Customer: Electric","img_004.jpg"
-demo_005,user_b,"Customer: Stone chip on the glass but it's tiny | Support: Windshield? | Customer: Yes front windshield","img_005.jpg"

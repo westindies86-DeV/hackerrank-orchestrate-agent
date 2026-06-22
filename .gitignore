@@ -23,3 +23,12 @@ __pycache__/
 hackerrank-orchestrate-june26/
 
 claims/
+
+claims.csv
+code/
+dataset/
+evaluation/
+generate_output.py
+output.csv
+project_log.txt
+requirements.txt

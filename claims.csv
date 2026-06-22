@@ -1,6 +1,0 @@
-claim_id,user_id,image_ids,item_description
-demo_001,user_a,https://raw.githubusercontent.com/westindies86-DeV/hackerrank-orchestrate-agent/main/img_001.jpg,iPhone 14 Pro
-demo_002,user_b,https://raw.githubusercontent.com/westindies86-DeV/hackerrank-orchestrate-agent/main/img_002.jpg,MacBook Air
-demo_003,user_c,https://raw.githubusercontent.com/westindies86-DeV/hackerrank-orchestrate-agent/main/img_003.jpg,Sony Headphones
-demo_004,user_d,https://raw.githubusercontent.com/westindies86-DeV/hackerrank-orchestrate-agent/main/img_004.jpg,Nike Shoes
-demo_005,user_e,https://raw.githubusercontent.com/westindies86-DeV/hackerrank-orchestrate-agent/main/img_005.jpg,Dyson Vacuum
