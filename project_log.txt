@@ -1,0 +1,19 @@
+Session: HackerRank VLM Damage Detector
+Date: 2026-06-19
+
+Problem: Build VLM pipeline to detect physical damage in insurance claim images and validate against user_claim text.
+
+Approach:
+1. Model: Mistral Pixtral-12B-2409 selected for multimodal vision + native JSON mode support
+2. Prompt Engineering: prompts/executor.txt enforces strict schema, temperature=0.1, explicit anti-hallucination rules: "Only report damage if visually present. Never infer from claim text."
+3. Batch Processing: main.py iterates data/input.json, base64-encodes images, calls API
+4. Error Handling: damage_analyzer.py wraps API calls in try/except. Missing images return damage_type:"error" with reasoning, allowing batch to continue
+
+Evaluation:
+- Tested 4 real images: test_11.jpg showed frost heave damage correctly detected as damage_type:"other", severity:"moderate", confidence:0.95
+- matches_claim logic: Returns false when user_claim is generic "shows visible damage" vs specific damage detected
+- Edge case: Deleted test_10.jpg. Pipeline returned error for user_001 but processed users 002-004 successfully
+
+AI Usage: Used AI assistant to debug PowerShell UTF-8 BOM issues, fix multi-line string syntax, and iterate on executor.txt prompt. All model outputs manually verified against images. No hallucinated damage observed.
+
+Tradeoffs: Chose Pixtral-12B over GPT-4V for cost/latency. Used base64 vs URLs to keep solution self-contained.
