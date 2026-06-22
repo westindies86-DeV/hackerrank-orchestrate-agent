@@ -1,0 +1,61 @@
+﻿import os
+from mistralai.client import Mistral
+import base64
+from pathlib import Path
+from typing import Dict
+import json
+
+class DamageAnalyzer:
+    def __init__(self, api_key: str, base_path: str = "."):
+        self.client = Mistral(api_key=api_key)
+        self.base_path = Path(base_path)
+        prompt_path = self.base_path / "prompts" / "executor.txt"
+        with open(prompt_path, "r", encoding="utf-8") as f:
+            self.prompt_template = f.read()
+
+    def _encode_image(self, image_path: str) -> str:
+        img_path = self.base_path / "images" / image_path
+        if not img_path.exists():
+            raise FileNotFoundError(f"Image not found: {img_path}")
+        with open(img_path, "rb") as f:
+            return base64.b64encode(f.read()).decode('utf-8')
+
+    def analyze_claim(self, claim: Dict) -> Dict:
+        try:
+            content = []
+            for img_path in claim["image_paths"]:
+                img_b64 = self._encode_image(img_path)
+                content.append({
+                    "type": "image_url",
+                    "image_url": f"data:image/jpeg;base64,{img_b64}"
+                })
+
+            prompt_text = self.prompt_template.replace(
+                "{{claim_object}}", claim['claim_object']
+            ).replace(
+                "{{user_claim}}", claim['user_claim']
+            )
+
+            content.append({"type": "text", "text": prompt_text})
+
+            chat_response = self.client.chat.complete(
+                model="pixtral-12b-2409",
+                messages=[{"role": "user", "content": content}],
+                response_format={"type": "json_object"},
+                temperature=0.1
+            )
+
+            result = json.loads(chat_response.choices[0].message.content)
+            result["user_id"] = claim["user_id"]
+            return result
+            
+        except Exception as e:
+            return {
+                "user_id": claim["user_id"],
+                "damage_detected": False,
+                "damage_type": "error",
+                "severity": "none", 
+                "matches_claim": False,
+                "confidence": 0.0,
+                "reasoning": f"Error processing claim: {str(e)}"
+            }
