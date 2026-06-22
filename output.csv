@@ -1,6 +1,45 @@
-claim_id,status,issue_type,object_part,risk_flags,severity,claim_status_justification,supporting_image_ids
-demo_001,approved,cosmetic_damage,windshield,repeat_claimer;prior_reject,medium,Validated cosmetic_damage on windshield,img_001.jpg
-demo_002,approved,water_damage,roof,,low,Validated water_damage on roof,img_002.jpg
-demo_003,approved,collision_damage,bumper,repeat_claimer;prior_reject,medium,Validated collision_damage on bumper,img_003.jpg
-demo_004,rejected,unknown,window,,low,Insufficient evidence,img_004.jpg
-demo_005,approved,cosmetic_damage,windshield,,low,Validated cosmetic_damage on windshield,img_005.jpg
+evidence_standard_met,evidence_standard_met_reason,risk_flags,issue_type,object_part,claim_status,claim_status_justification,supporting_image_ids,valid_image,severity
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg,img_3.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,img_1.jpg,True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
+True,Damage visible,,crack,windshield,approved,Evidence sufficient,"img_1.jpg,img_2.jpg",True,low
