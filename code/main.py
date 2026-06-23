@@ -1,145 +1,175 @@
-﻿import csv
+﻿import pandas as pd
 import os
-from pathlib import Path
+import re
+from PIL import Image, ImageStat
 
-def analyze_claim(case_folder, user_claim):
-    """
-    Rule-based analyzer that produces valid output for Hackerrank grader.
-    Maps claim text to issue_type/object_part/severity.
-    """
-    images = list(case_folder.glob('*.jpg')) + list(case_folder.glob('*.png')) + list(case_folder.glob('*.jpeg'))
-    
-    claim_lower = user_claim.lower()
-    issue_type = 'none'
-    object_part = 'none'
-    severity = 'none'
-    claim_status = 'rejected'
-    evidence_met = False
-    
-    # Map keywords to damage types
-    if 'crack' in claim_lower and 'windshield' in claim_lower:
-        issue_type = 'crack'
-        object_part = 'windshield'
-        severity = 'moderate'
-        claim_status = 'needs_review'
-        evidence_met = True
-    elif 'dent' in claim_lower and 'bumper' in claim_lower:
-        issue_type = 'dent'
-        object_part = 'bumper'
-        severity = 'minor'
-        claim_status = 'needs_review'
-        evidence_met = True
-    elif 'chip' in claim_lower and ('windshield' in claim_lower or 'glass' in claim_lower):
-        issue_type = 'scratch'
-        object_part = 'windshield'
-        severity = 'minor'
-        claim_status = 'needs_review'
-        evidence_met = True
-    elif 'window' in claim_lower and ('roll' in claim_lower or 'stuck' in claim_lower or 'electric' in claim_lower):
-        issue_type = 'electrical_failure'
-        object_part = 'window'
-        severity = 'minor'
-        claim_status = 'needs_review'
-        evidence_met = True
-    elif 'scratch' in claim_lower:
-        issue_type = 'scratch'
-        object_part = 'body'
-        severity = 'minor'
-        claim_status = 'needs_review'
-        evidence_met = True
-    elif 'leak' in claim_lower or 'water' in claim_lower:
-        issue_type = 'water_damage'
-        object_part = 'roof'
-        severity = 'moderate'
-        claim_status = 'needs_review'
-        evidence_met = True
-    
+OUTPUT_COLUMNS = [
+    "user_id","image_paths","user_claim","claim_object",
+    "evidence_standard_met","evidence_standard_met_reason","risk_flags",
+    "issue_type","object_part","claim_status","claim_status_justification",
+    "supporting_image_ids","valid_image","severity"
+]
+
+ALLOWED_ISSUE_TYPES = ["dent","scratch","crack","glass_shatter","broken_part","missing_part",
+                       "torn_packaging","crushed_packaging","water_damage","stain","none","unknown"]
+
+def extract_user_claim(conversation):
+    lines = str(conversation).split('\n')
+    user_lines = []
+    for line in lines:
+        if 'customer:' in line.lower() or 'user:' in line.lower():
+            parts = line.split(':', 1)
+            if len(parts) > 1:
+                user_lines.append(parts[1].strip())
+    return ' '.join(user_lines) if user_lines else str(conversation)
+
+def detect_claim_object(text):
+    t = text.lower()
+    if any(w in t for w in ['car','vehicle','windshield','bumper','door','window','roof']):
+        return "car"
+    if any(w in t for w in ['laptop','screen','keyboard']):
+        return "laptop"
+    if any(w in t for w in ['package','box','delivery']):
+        return "package"
+    return "unknown"
+
+def detect_issue_type(text):
+    t = text.lower()
+    for it in ALLOWED_ISSUE_TYPES:
+        if it in ["unknown","none"]:
+            continue
+        if it.replace("_"," ") in t or it in t:
+            return it
+    if "crack" in t: return "crack"
+    if "dent" in t or "dented" in t: return "dent"
+    if "scratch" in t or "chip" in t: return "scratch"
+    if "shatter" in t: return "glass_shatter"
+    if "broken" in t or "won't" in t or "wont" in t: return "broken_part"
+    if "leak" in t or "water" in t: return "water_damage"
+    return "unknown"
+
+def detect_object_part(text, claim_object):
+    t = text.lower()
+    if claim_object == "car":
+        if "windshield" in t: return "windshield"
+        if "rear bumper" in t or "back bumper" in t: return "rear_bumper"
+        if "bumper" in t: return "front_bumper"
+        if "door" in t: return "door"
+        if "window" in t: return "window"
+        if "roof" in t: return "roof"
+    if claim_object == "laptop":
+        if "screen" in t: return "screen"
+        if "keyboard" in t: return "keyboard"
+    return "unknown"
+
+def parse_min_images(text):
+    match = re.search(r'(\d+)\+?\s*image', str(text).lower())
+    return int(match.group(1)) if match else 2
+
+def is_blurry(img, threshold=100):
+    try:
+        gray = img.convert('L')
+        return ImageStat.Stat(gray).var[0] < threshold
+    except:
+        return False
+
+def resolve_image_paths(image_ids, claim_id):
+    if pd.isna(image_ids) or not image_ids:
+        return [], []
+
+    paths, ids = [], []
+    for idx, img_id in enumerate(str(image_ids).split(';')):
+        img_id = img_id.strip()
+        if not img_id:
+            continue
+
+        # Convert img_001.jpg -> img_1.jpg to match dataset files
+        match = re.search(r'img_0*(\d+)\.jpg', img_id)
+        actual_filename = f"img_{match.group(1)}.jpg" if match else img_id
+
+        path = f"dataset/images/test/{claim_id}/{actual_filename}"
+        if os.path.exists(path):
+            paths.append(path)
+            ids.append(str(idx))
+
+    return paths, ids
+
+def analyze_claim(row, evidence_reqs):
+    claim_id = row["claim_id"]
+    user_id = row["user_id"]
+    conversation = row["conversation"]
+    image_ids = row.get("image_ids", "")
+
+    user_claim = extract_user_claim(conversation)
+    claim_object = detect_claim_object(user_claim)
+    image_paths, supporting_image_ids = resolve_image_paths(image_ids, claim_id)
+
+    valid_images = []
+    risk_flags = set()
+
+    for path in image_paths:
+        try:
+            img = Image.open(path)
+            img.verify()
+            img = Image.open(path)
+            if is_blurry(img):
+                risk_flags.add("blurry_image")
+            else:
+                valid_images.append(path)
+        except Exception:
+            risk_flags.add("wrong_object")
+
+    if image_ids and not image_paths:
+        risk_flags.add("wrong_object")
+
+    valid_image = len(valid_images) > 0
+
+    req_row = evidence_reqs[evidence_reqs["claim_object"] == claim_object]
+    min_images = 2
+    if not req_row.empty:
+        min_images = parse_min_images(req_row["minimum_image_evidence"].iloc[0])
+
+    evidence_standard_met = len(valid_images) >= min_images
+
+    if not valid_image:
+        evidence_standard_met_reason = "no_valid_images"
+    elif not evidence_standard_met:
+        evidence_standard_met_reason = f"requires_{min_images}_images_found_{len(valid_images)}"
+    else:
+        evidence_standard_met_reason = "evidence_standard_met"
+
+    issue_type = detect_issue_type(user_claim)
+    object_part = detect_object_part(user_claim, claim_object)
+
+    if not valid_image or not evidence_standard_met:
+        claim_status = "not_enough_information"
+        claim_status_justification = "Insufficient valid images per evidence requirements"
+    else:
+        claim_status = "supported"
+        claim_status_justification = f"Image evidence consistent with {issue_type} on {object_part}"
+
+    severity = "medium" if claim_status == "supported" and issue_type in ["crack","glass_shatter","broken_part"] else "low"
+
     return {
-        'evidence_standard_met': evidence_met,
-        'evidence_standard_met_reason': 'Visual inspection of provided images' if images else 'No images provided',
-        'risk_flags': 'none',
-        'issue_type': issue_type,
-        'object_part': object_part,
-        'claim_status': claim_status,
-        'claim_status_justification': 'Assessment based on images and claim conversation',
-        'supporting_image_ids': ';'.join([img.name for img in images]) if images else 'none',
-        'valid_image': 'True' if images else 'False',
-        'severity': severity
+        "user_id": user_id,
+        "image_paths": ";".join(image_paths),
+        "user_claim": user_claim,
+        "claim_object": claim_object,
+        "evidence_standard_met": evidence_standard_met,
+        "evidence_standard_met_reason": evidence_standard_met_reason,
+        "risk_flags": ";".join(risk_flags),
+        "issue_type": issue_type,
+        "object_part": object_part,
+        "claim_status": claim_status,
+        "claim_status_justification": claim_status_justification,
+        "supporting_image_ids": ";".join(supporting_image_ids),
+        "valid_image": valid_image,
+        "severity": severity
     }
 
-def main():
-    # 1. Load claims.csv in exact order
-    claims_map = {}
-    with open('dataset/claims.csv', 'r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            claims_map[row['claim_id']] = {
-                'user_id': row['user_id'],
-                'user_claim': row['conversation']
-            }
-    
-    print(f"Found {len(claims_map)} claims in claims.csv")
-    
-    # 2. Process each claim_id in CSV order
-    all_results = []
-    for case_id, claim_info in claims_map.items():
-        case_folder = Path(f'dataset/images/test/{case_id}')
-        
-        if not case_folder.exists():
-            print(f"Processing {case_id} - folder not found, creating placeholder")
-            image_paths = 'none'
-            model_output = {
-                'evidence_standard_met': False,
-                'evidence_standard_met_reason': 'No images provided',
-                'risk_flags': 'none',
-                'issue_type': 'none',
-                'object_part': 'none',
-                'claim_status': 'rejected',
-                'claim_status_justification': 'No images available for assessment',
-                'supporting_image_ids': 'none',
-                'valid_image': 'False',
-                'severity': 'none'
-            }
-        else:
-            print(f"Processing {case_id}")
-            images = list(case_folder.glob('*.jpg')) + list(case_folder.glob('*.png')) + list(case_folder.glob('*.jpeg'))
-            image_paths = ';'.join([f'images/test/{case_id}/{img.name}' for img in images]) if images else 'none'
-            model_output = analyze_claim(case_folder, claim_info['user_claim'])
-        
-        result = {
-            'user_id': claim_info['user_id'],
-            'image_paths': image_paths,
-            'user_claim': claim_info['user_claim'],
-            'claim_object': 'car',
-            **model_output
-        }
-        all_results.append(result)
-        print(f" -> {result['claim_status']} | {result['issue_type']} | {result['object_part']}")
-    
-    # 3. Write output.csv with exact column order
-    fieldnames = [
-        'user_id',
-        'image_paths',
-        'user_claim',
-        'claim_object',
-        'evidence_standard_met',
-        'evidence_standard_met_reason',
-        'risk_flags',
-        'issue_type',
-        'object_part',
-        'claim_status',
-        'claim_status_justification',
-        'supporting_image_ids',
-        'valid_image',
-        'severity'
-    ]
-    
-    with open('output.csv', 'w', newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(all_results)
-    
-    print(f"\nDone. Wrote {len(all_results)} results to output.csv")
-
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    claims = pd.read_csv("dataset/claims.csv")
+    evidence_reqs = pd.read_csv("dataset/evidence_requirements.csv")
+    results = [analyze_claim(row, evidence_reqs) for _, row in claims.iterrows()]
+    pd.DataFrame(results, columns=OUTPUT_COLUMNS).to_csv("output.csv", index=False)
+    print(f"Processed {len(results)} claims. Saved output.csv")
